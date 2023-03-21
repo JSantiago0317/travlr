@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const readLine = require('readline');
 
-let dbURL = 'mongodb://127.0.0.1/travlr';
+let dbURL = "mongodb://127.0.0.1:27017/travlr";
 if (process.env.NODE_ENV === 'production') {
   dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
 }
@@ -58,4 +58,4 @@ process.on('SIGTERM', () => {
 
 connect();
 
-require('./travlr');
+require('./models/travlr');
