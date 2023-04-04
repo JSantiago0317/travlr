@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TripDataService } from '../services/trip-data.service';
 import { Trip } from '../models/trip';
 
@@ -14,7 +15,15 @@ export class TripListingComponent implements OnInit {
 
   message: string;
 
-  constructor(private tripDataService: TripDataService) { }
+  constructor(
+    private tripDataService: TripDataService,
+    private router: Router
+    ) { }
+
+    private addTrip(): void {
+      console.log('Inside TripListingComponent#addTrip');
+      this.router.navigate(['add-trip']);
+    }
 
   private getTrips(): void {
     console.log('Inside TripListingComponent#getTrips');
@@ -30,5 +39,4 @@ export class TripListingComponent implements OnInit {
   ngOnInit(): void {
     this.getTrips();
   }
-
 }
