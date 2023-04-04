@@ -9,13 +9,15 @@ import { TripCardComponent } from './trip-card/trip-card.component';
 import { TripDataService } from './services/trip-data.service';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditTripComponent } from './edit-trip/edit-trip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TripListingComponent,
     TripCardComponent,
-    AddTripComponent
+    AddTripComponent,
+    EditTripComponent
   ],
   imports: [
     BrowserModule,
