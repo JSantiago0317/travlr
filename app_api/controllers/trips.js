@@ -4,26 +4,26 @@ const Trip = mongoose.model('trips');
 const User = mongoose.model('users');
 
 const getUser = (req, res, callback) => {
-    if (req.payload && req.payload.email) {
+    if (req.auth && req.auth.email) {
       User
-        .findOne({ email : req.payload.email })
+        .findOne({ email : req.auth.email })
         .exec((err, user) => {
           if (!user) {
             return res
               .status(404)
-              .json({"message": "User not found"});
+              .json({"message": "User not found 1"});
           } else if (err) {
             console.log(err);
             return res
               .status(404)
               .json(err);
            }
-          callback(req, res, user.name);
+        callback(req, res, user.name);
          });
     } else {
       return res
         .status(404)
-        .json({"message": "User not found"});
+        .json({"message": "User not found 2"});
     }
   };
 
