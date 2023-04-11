@@ -11,7 +11,7 @@ const getUser = (req, res, callback) => {
           if (!user) {
             return res
               .status(404)
-              .json({"message": "User not found 1"});
+              .json({"message": "User not found"});
           } else if (err) {
             console.log(err);
             return res
@@ -23,7 +23,7 @@ const getUser = (req, res, callback) => {
     } else {
       return res
         .status(404)
-        .json({"message": "User not found 2"});
+        .json({"message": "User not found"});
     }
   };
 
@@ -65,6 +65,26 @@ const tripsFindCode = async (req, res) => {
                 return res
                     .status(200)
                     .json(trip);
+            }
+        });
+}
+
+const tripsDeleteTrip = async (req, res) => {
+    Trip
+        .findOneAndDelete({ 'code': req.params.tripCode })
+        .exec((err, trip) => {
+            if (!trip) {
+                return res
+                    .status(404)
+                    .json({ "message": "trip not found"});
+            } else if (err) {
+                return res
+                    .status(404)
+                    ,json(err);
+            } else {
+                return res
+                    .status(200)
+                    .json({"message": "Trip was successfully deleted"});
             }
         });
 }
@@ -139,30 +159,10 @@ const tripsUpdateTrip = async (req, res) => {
     );
 }
 
-const tripDeleteTrip = async (req, res) => {
-    Trip
-        .findOneAndDelete({ 'code': req.params.tripCode })
-        .exec((err, trip) => {
-            if (!trip) {
-                return res
-                    .status(404)
-                    .json({ "message": "trip not found"});
-            } else if (err) {
-                return res
-                    .status(404)
-                    ,json(err);
-            } else {
-                return res
-                    .status(200)
-                    .json({"message": "Trip was successfully deleted"});
-            }
-        });
-}
-
 module.exports = {
     tripsList,
     tripsFindCode,
     tripAddTrip,
     tripsUpdateTrip,
-    tripDeleteTrip
+    tripsDeleteTrip
 };
