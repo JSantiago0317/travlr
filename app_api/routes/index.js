@@ -21,11 +21,12 @@ router
 router
     .route('/trips')
     .get(tripsController.tripsList)
-    .post(auth, tripsController.tripAddTrip);
+    .post(tripsController.tripAddTrip);
 
 router
     .route('/trips/:tripCode')
     .get(tripsController.tripsFindCode)
-    .put(auth, tripsController.tripsUpdateTrip);
+    .put(tripsController.tripsUpdateTrip)
+    .delete(tripsController.tripDeleteTrip);
     
 module.exports = router;
