@@ -4,7 +4,7 @@ const { expressjwt: jwt} = require('express-jwt');
 const auth = jwt({
     secret: process.env.JWT_SECRET,
     userProperty: 'payload',
-    algorithms: ["RS256"]
+    algorithms: ["HS256"]
 });
 
 const authController = require('../controllers/authentication');
@@ -21,7 +21,7 @@ router
 router
     .route('/trips')
     .get(tripsController.tripsList)
-    .post(tripsController.tripAddTrip);
+    .post(auth, tripsController.tripAddTrip);
 
 router
     .route('/trips/:tripCode')
