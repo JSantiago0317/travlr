@@ -1,11 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
-
 import { Trip } from '../models/trip';
 import { Authresponse } from '../models/authresponse';
 import { BROWSER_STORAGE } from '../storage';
 import { User } from '../models/user';
-import { promise } from 'protractor';
 
 @Injectable()
 export class TripDataService {
@@ -65,6 +63,11 @@ export class TripDataService {
       .catch(this.handleError);
   }
 
+  private handleError(error: any): Promise<any> {
+    console.error('Something has gone wrong', error);
+    return Promise.reject(error.message || error);
+  }
+
   public login(user: User): Promise<Authresponse> {
     return this.makeAuthApiCall('login', user);
   }
@@ -80,10 +83,5 @@ export class TripDataService {
       .toPromise()
       .then(response => response.json() as Authresponse)
       .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('Something has gone wrong', error);
-    return Promise.reject(error.message || error);
   }
 }

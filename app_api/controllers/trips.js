@@ -6,7 +6,7 @@ const User = mongoose.model('users');
 const getUser = (req, res, callback) => {
     if (req.auth && req.auth.email) {
       User
-        .findOne({ email : req.auth.email })
+        .findOne({ email : req.payload.email })
         .exec((err, user) => {
           if (!user) {
             return res
