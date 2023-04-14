@@ -14,6 +14,7 @@ import { DeleteTripsComponent } from './delete-trips/delete-trips.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     DeleteTripsComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,
